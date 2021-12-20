@@ -1,6 +1,5 @@
 const { Sequelize } = require('sequelize');
 const sequelize  = require('../config/database')
-const { Product } = require('./Product')
 
 const Cart = sequelize.define('Cart',{
     id:{
@@ -24,24 +23,8 @@ Cart.associate = models=>{
     })
 }
 
-async function getAllProduct(){
-    try{
-        console.log("jm")
-        const data = await Cart.findAll({
-            include: Product,
-            where:{id:1}
-        });
-    console.log(data)    
-    return data
-    }catch(err){
-        console.log("jmmhv")
-        console.log(err)
-    }
-} 
 
 
-module.exports = {
-    Cart,
-    getAllProduct,
-}
+module.exports = Cart
+
 
