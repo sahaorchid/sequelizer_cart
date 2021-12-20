@@ -24,10 +24,8 @@ timestamps: false
 }, {})
 
 Product.associate = models=>{
-    Cart.belongsTo(models.Cart,{
+    Product.belongsTo(models.Cart,{
     })
 }
 
-module.exports = {
-    Product
-}    
+module.exports = Product   
