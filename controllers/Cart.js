@@ -1,14 +1,24 @@
-const { getAllProduct } = require('../models/Cart')
+const Cart = require('../models/Cart')
+const Product = require('../models/Product')
 
-function getProduct(req,res){
-    const product = getAllProduct()
-    console.log(product)
-    product.then((data)=>{
-         res.status(200).json({
-         message: "successfully fetched",
-         data: data })
-    })
+
+async function getProduct(req,res){
+    try{
+        const data = await Cart.findAll({
+            include: Product,
+            where:{id:1}
+        });
+        res.status(200).json({
+            message: "successfully fetched",
+            data: data })
+
+    }catch(err){
+        console.log("jmmhv")
+        console.log(err)
+    }
 }
+
+
 
 module.exports = {
     getProduct
